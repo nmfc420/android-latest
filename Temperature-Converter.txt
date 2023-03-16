@@ -1,0 +1,60 @@
+Create Android application to convert temperature from Fahrenheit to Celsius.
+(C = (F-32) ×5/9) using Linear layout.
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/fahrenheit_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter temperature in Fahrenheit"/>
+
+    <TextView
+        android:id="@+id/celsius_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""/>
+
+    <Button
+        android:id="@+id/convert_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Convert"
+        android:onClick="convertTemperature"/>
+</LinearLayout>
+
+
+
+package com.example.temperatureconverter
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import android.widget.EditText
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+
+    fun convertTemperature(view: View) {
+        val fahrenheitEditText = findViewById<EditText>(R.id.fahrenheit_edittext)
+        val celsiusTextView = findViewById<TextView>(R.id.celsius_textview)
+
+        val fahrenheit = fahrenheitEditText.text.toString().toDouble()
+        val celsius = (fahrenheit - 32) * 5 / 9
+
+        celsiusTextView.text = "Temperature in Celsius: $celsius"
+    }
+}
+_______________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________
+
+
+
