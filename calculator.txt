@@ -1,0 +1,172 @@
+Create Android application to demonstrate Constraint Layout with radio button.
+
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow>
+        <EditText
+            android:id="@+id/result_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="textEnd"
+            android:textSize="20sp"/>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/button_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7"
+            android:onClick="buttonClick"/>
+        <Button
+            android:id="@+id/button_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8"
+            android:onClick="buttonClick"/>
+        <Button
+            android:id="@+id/button_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9"
+            android:onClick="buttonClick"/>
+        <Button
+            android:id="@+id/button_divide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"
+            android:onClick="buttonClick"/>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/button_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:onClick="buttonClick"/>
+        <Button
+            android:id="@+id/button_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:onClick="buttonClick"/>
+        <Button
+            android:id="@+id/button_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6"
+            android:onClick="buttonClick"/>
+        <Button
+            android:id="@+id/button_multiply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:onClick="buttonClick"/>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/button_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:onClick="buttonClick"/>
+        <Button
+            android:id="@+id/button_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:onClick="buttonClick"/>
+        <Button
+            android:id="@+id/button_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:onClick="buttonClick"/>
+        <Button
+            android:id="@+id/button_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:onClick="buttonClick"/>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id
+
+
+
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    lateinit var resultEditText: EditText
+    var num1: Double = 0.0
+    var num2: Double = 0.0
+    var operation = ""
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        resultEditText = findViewById(R.id.result_edittext)
+    }
+
+    fun buttonClick(view: View) {
+        val button = view as Button
+        val buttonText = button.text.toString()
+
+        when (buttonText) {
+            "+" -> {
+                num1 = resultEditText.text.toString().toDouble()
+                operation = "+"
+                resultEditText.text.clear()
+            }
+            "-" -> {
+                num1 = resultEditText.text.toString().toDouble()
+                operation = "-"
+                resultEditText.text.clear()
+            }
+            "*" -> {
+                num1 = resultEditText.text.toString().toDouble()
+                operation = "*"
+                resultEditText.text.clear()
+            }
+            "/" -> {
+                num1 = resultEditText.text.toString().toDouble()
+                operation = "/"
+                resultEditText.text.clear()
+            }
+            "C" -> {
+                num1 = 0.0
+                num2 = 0.0
+                operation = ""
+                resultEditText.text.clear()
+            }
+            "=" -> {
+                num2 = resultEditText.text.toString().toDouble()
+                when (operation) {
+                    "+" -> resultEditText.setText((num1 + num2).toString())
+                    "-" -> resultEditText.setText((num1 - num2).toString())
+                    "*" -> resultEditText.setText((num1 * num2).toString())
+                    "/" -> resultEditText.setText((num1 / num2).toString())
+                }
+                num1 = 0.0
+                num2 = 0.0
+                operation = ""
+            }
+            else -> resultEditText.append(buttonText)
+        }
+    }
+}
+
